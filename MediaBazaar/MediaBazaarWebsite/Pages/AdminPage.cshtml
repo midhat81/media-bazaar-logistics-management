@@ -1,0 +1,230 @@
+﻿@page
+@model MediaBazaarWebsite.Pages.AdminPageModel
+@{
+}
+<div class="container">
+      <div class="row">
+        <div class="col-md-12">
+            <canvas id="lineChart" height="400"></canvas>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-xl-3">
+            <div class="card bg-c-green order-card">
+                <div class="card-block">
+                    <h6 class="m-b-20">New Employees Last Month</h6>
+                    <h2 class="text-right"><i class="fa fa-cart-plus f-left"></i><span>
+                       @Model.Hired1Month
+                    </span></h2>
+                    
+                </div>
+            </div>
+        </div>
+
+         <div class="col-md-4 col-xl-3">
+            <div class="card bg-c-green order-card">
+                <div class="card-block">
+                    <h6 class="m-b-20">New Employees in Last 3 Months</h6>
+                    <h2 class="text-right">
+                        <i class="fa fa-cart-plus f-left"></i><span>
+                            @Model.Hired6Month
+                        </span>
+                    </h2>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-xl-3">
+            <div class="card bg-c-green order-card">
+                <div class="card-block">
+                    <h6 class="m-b-20">New Employees in Last 6 Months</h6>
+                    <h2 class="text-right">
+                        <i class="fa fa-cart-plus f-left"></i><span>
+                            @Model.Hired6Month
+                        </span>
+                    </h2>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-xl-3">
+            <div class="card bg-c-green order-card">
+                <div class="card-block">
+                    <h6 class="m-b-20">New Employees in Last Year</h6>
+                    <h2 class="text-right">
+                        <i class="fa fa-cart-plus f-left"></i><span>
+                            @Model.Hired1Year
+                        </span>
+                    </h2>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        
+
+        <div class="col-md-4 col-xl-3">
+            <div class="card bg-c-yellow order-card">
+                <div class="card-block">
+                    <h6 class="m-b-20">Deactivated Employees</h6>
+                    <h2 class="text-right"><i class="fa fa-refresh f-left"></i><span>
+                        @Model.Deactivated
+                        </span></h2
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 col-xl-3">
+            <div class="card bg-c-pink order-card">
+                <div class="card-block">
+                    <h6 class="m-b-20">Fired Employees Last Month</h6>
+                    <h2 class="text-right">
+                        <i class="fa fa-cart-plus f-left"></i><span>
+                            @Model.Fired1Month
+                        </span>
+                    </h2>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-xl-3">
+            <div class="card bg-c-pink order-card">
+                <div class="card-block">
+                    <h6 class="m-b-20">Fired Employees in Last 3 Month</h6>
+                    <h2 class="text-right">
+                        <i class="fa fa-cart-plus f-left"></i><span>
+                            @Model.Fired3Month
+                        </span>
+                    </h2>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-xl-3">
+            <div class="card bg-c-pink order-card">
+                <div class="card-block">
+                    <h6 class="m-b-20">Fired Employees in Last 6 Month </h6>
+                    <h2 class="text-right">
+                        <i class="fa fa-cart-plus f-left"></i><span>
+                            @Model.Fired6Month
+                        </span>
+                    </h2>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-xl-3">
+            <div class="card bg-c-pink order-card">
+                <div class="card-block">
+                    <h6 class="m-b-20">Fired Employees Last Year</h6>
+                    <h2 class="text-right">
+                        <i class="fa fa-cart-plus f-left"></i><span>
+                            @Model.Fired1Year
+                        </span>
+                    </h2>
+
+                </div>
+            </div>
+        </div>
+    </div>
+   <div class="row mt-5">
+    <div class="col-md-12">
+        <h3>Employee List</h3>
+        <div class="table-responsive">
+            <table class="table table-hover shadow-sm">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Employee Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Contract Start Date</th>
+                        <th scope="col">Contract End Date</th>
+                        <th scope="col">Termination Reason</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var employee in Model._employeeManager.GetAllEmployees())
+                    {
+                        <tr>
+                            <td>@employee.GetFullName()</td>
+                            <td>@employee.Email</td>
+                            <td>@employee.Contract.startDate.ToString("yyyy-MM-dd")</td>
+                            <td>@(employee.Contract.endDate.HasValue ? employee.Contract.endDate.Value.ToString("yyyy-MM-dd") : "N/A")</td>
+                            <td>@(string.IsNullOrEmpty(employee.Contract.terminationReason) ? "N/A" : employee.Contract.terminationReason)</td>
+                            <td>
+                                <span class="badge @(employee.Contract.isActive ? "badge-success" : "badge-secondary") text-black">
+                                    @(employee.Contract.isActive ? "Active" : "Deactivated")
+                                </span>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+
+@section Scripts {
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+       
+        var hiredData = [
+            @Model.Hired1Month,
+            @Model.Hired3Month,
+            @Model.Hired6Month,
+            @Model.Hired1Year
+        ];
+
+        var firedData = [
+            @Model.Fired1Month,
+            @Model.Fired3Month,
+            @Model.Fired6Month,
+            @Model.Fired1Year
+        ];
+
+        var labels = ["1 Month", "3 Months", "6 Months", "1 Year"];
+
+       
+        var ctx = document.getElementById('lineChart').getContext('2d');
+        var lineChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'New Employees',
+                    data: hiredData,
+                    borderColor: 'green',
+                    backgroundColor: 'transparent',
+                    borderWidth: 4
+                }, {
+                    label: 'Fired Employees',
+                    data: firedData,
+                    borderColor: 'red',
+                    backgroundColor: 'transparent',
+                    borderWidth: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false, 
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+}

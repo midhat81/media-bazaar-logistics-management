@@ -1,0 +1,61 @@
+﻿@page
+@model MediaBazaarWebsite.Pages.SalesPageModel
+@{
+    ViewData["Title"] = "Sales Page";
+}
+
+<div class="container mt-3">
+    <h1 class="display-4 text-center mb-4">Our Products</h1>
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @TempData["ErrorMessage"].ToString()
+        </div>
+    }
+    else if (TempData["Message"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData["Message"].ToString()
+        </div>
+    }
+    <div class="row">
+        @foreach (var product in Model.Products)
+        {
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <div style="height: 150px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                        <img src="@Model.ProductImages[product.Model]" class="img-fluid" alt="Product Image" style="max-height: 100%; object-fit: contain;">
+                    </div>
+                    <div class="card-body d-flex flex-column justify-content-between" style="height: 250px;">
+                        <div>
+                            <h5 class="card-title">@product.Model</h5>
+                            <p class="card-text">@product.Description</p>
+                            <p class="card-text">Price: @product.Price.ToString("C")</p>
+                            <p class="card-text">Stock: @product.Stock</p>
+                        </div>
+                        <div>
+                            @if (product.Stock == 0)
+                            {
+                                if (Model.ProductsWithRestockRequestByCurrentUser.Contains(product.Id))
+                                {
+                                    <p class="text-center">Restock request already submitted.</p>
+                                }
+                                else
+                                {
+                                    <div class="d-flex justify-content-between">
+                                        <form method="post" asp-page-handler="RequestRestock" class="d-flex flex-grow-1">
+                                            <input type="hidden" name="productId" value="@product.Id" />
+                                            <input type="number" name="requestedQuantity" min="1" value="1" class="form-control ml-2" style="width: 100px;" />
+                                            <button type="submit" class="btn btn-warning flex-grow-1">Request Restock</button>
+                                            @Html.AntiForgeryToken()
+                                        </form>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

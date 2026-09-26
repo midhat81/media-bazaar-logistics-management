@@ -1,0 +1,31 @@
+﻿@page
+@model MediaBazaarWebsite.Pages.LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="login-container">
+    <div class="login-content">
+        <div class="login-form">
+            <h2>Login</h2>
+            <p>Welcome back! Please login to continue.</p>
+            <form method="POST">
+                <div class="form-group">
+                    <label asp-for="Email">Email</label>
+                    <input asp-for="Email" type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password">Password</label>
+                    <input asp-for="Password" type="password" id="password" name="password" required>
+                </div>
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <button type="submit">Login</button>
+                
+            </form>
+            <a href="/Change_Password">Forgot password?</a>
+        </div>
+        <div class="login-image">
+            <img src="~/img/login_bg.png" alt="Login Image">
+        </div>
+    </div>
+</div>

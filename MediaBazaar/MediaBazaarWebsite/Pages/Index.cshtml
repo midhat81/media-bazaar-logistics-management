@@ -1,0 +1,22 @@
+﻿@page
+@model MediaBazaarWebsite.Pages.IndexModel
+@{
+    ViewData["Title"] = "Welcome";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="text-center">
+                <img src="./img/jupiter.png" class="img-fluid rounded my-3 floating" alt="Welcome Banner">
+                <h2>Welcome, @Model.FirstName @Model.LastName!</h2>
+                <p>You have successfully logged in. Start managing your tasks now.</p>
+            </div>
+            <div class="d-grid gap-2">
+                <a class="btn btn-lg orange-button" asp-page="/Schedule">Schedule</a>
+                <a class="btn btn-lg orange-button" asp-page="/Details">Details</a>
+                <a class="btn btn-lg orange-button" asp-page="/Availability">Availability</a>
+            </div>
+        </div>
+    </div>
+</div>
