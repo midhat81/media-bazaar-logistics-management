@@ -1,230 +1,88 @@
-﻿@page
+@page
 @model MediaBazaarWebsite.Pages.AdminPageModel
 @{
+    ViewData["Title"] = "Dashboard";
 }
-<div class="container">
-      <div class="row">
-        <div class="col-md-12">
-            <canvas id="lineChart" height="400"></canvas>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4 col-xl-3">
-            <div class="card bg-c-green order-card">
-                <div class="card-block">
-                    <h6 class="m-b-20">New Employees Last Month</h6>
-                    <h2 class="text-right"><i class="fa fa-cart-plus f-left"></i><span>
-                       @Model.Hired1Month
-                    </span></h2>
-                    
-                </div>
-            </div>
-        </div>
 
-         <div class="col-md-4 col-xl-3">
-            <div class="card bg-c-green order-card">
-                <div class="card-block">
-                    <h6 class="m-b-20">New Employees in Last 3 Months</h6>
-                    <h2 class="text-right">
-                        <i class="fa fa-cart-plus f-left"></i><span>
-                            @Model.Hired6Month
-                        </span>
-                    </h2>
+<style>
+    .dashboard-shell{padding:2rem 0 3rem}.dashboard-header{margin-bottom:1.75rem}
+    .dashboard-header h1{font-weight:700;margin-bottom:.35rem}.dashboard-header p{margin:0;color:#6c757d}
+    .dashboard-card{border:0;border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,.06);height:100%}
+    .metric-card{padding:1.25rem}.metric-label{color:#6c757d;font-size:.8rem;font-weight:600;margin-bottom:.55rem;text-transform:uppercase;letter-spacing:.03em}
+    .metric-value{font-size:2rem;font-weight:700;line-height:1;margin:0}.metric-icon{width:44px;height:44px;border-radius:12px;display:inline-flex;align-items:center;justify-content:center;font-size:1.1rem;margin-bottom:1rem;background:#f1f3f5}
+    .section-title{font-size:1.1rem;font-weight:700;margin:0}.chart-container{position:relative;height:330px}
+    .dashboard-table{margin-bottom:0}.dashboard-table th{border-top:0;color:#6c757d;font-size:.8rem;text-transform:uppercase;letter-spacing:.03em}
+    .dashboard-table td,.dashboard-table th{vertical-align:middle}.status-badge{border-radius:999px;padding:.4rem .65rem;font-size:.75rem;font-weight:600}
+</style>
 
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4 col-xl-3">
-            <div class="card bg-c-green order-card">
-                <div class="card-block">
-                    <h6 class="m-b-20">New Employees in Last 6 Months</h6>
-                    <h2 class="text-right">
-                        <i class="fa fa-cart-plus f-left"></i><span>
-                            @Model.Hired6Month
-                        </span>
-                    </h2>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4 col-xl-3">
-            <div class="card bg-c-green order-card">
-                <div class="card-block">
-                    <h6 class="m-b-20">New Employees in Last Year</h6>
-                    <h2 class="text-right">
-                        <i class="fa fa-cart-plus f-left"></i><span>
-                            @Model.Hired1Year
-                        </span>
-                    </h2>
-
-                </div>
-            </div>
-        </div>
+<div class="container dashboard-shell">
+    <div class="dashboard-header">
+        <h1>Dashboard</h1>
+        <p>Overview of employee activity and workforce status.</p>
     </div>
 
     <div class="row">
-        
-
-        <div class="col-md-4 col-xl-3">
-            <div class="card bg-c-yellow order-card">
-                <div class="card-block">
-                    <h6 class="m-b-20">Deactivated Employees</h6>
-                    <h2 class="text-right"><i class="fa fa-refresh f-left"></i><span>
-                        @Model.Deactivated
-                        </span></h2
-                </div>
-            </div>
-        </div>
+        <div class="col-12 col-md-6 col-xl-3 mb-4"><div class="card dashboard-card metric-card">
+            <div class="metric-icon"><i class="fa fa-users"></i></div><div class="metric-label">Active Employees</div>
+            <p class="metric-value">@Model.ActiveEmployees</p>
+        </div></div>
+        <div class="col-12 col-md-6 col-xl-3 mb-4"><div class="card dashboard-card metric-card">
+            <div class="metric-icon"><i class="fa fa-user-plus"></i></div><div class="metric-label">Hired — Last Month</div>
+            <p class="metric-value">@Model.Hired1Month</p>
+        </div></div>
+        <div class="col-12 col-md-6 col-xl-3 mb-4"><div class="card dashboard-card metric-card">
+            <div class="metric-icon"><i class="fa fa-refresh"></i></div><div class="metric-label">Deactivated</div>
+            <p class="metric-value">@Model.Deactivated</p>
+        </div></div>
+        <div class="col-12 col-md-6 col-xl-3 mb-4"><div class="card dashboard-card metric-card">
+            <div class="metric-icon"><i class="fa fa-user-times"></i></div><div class="metric-label">Fired — Last Month</div>
+            <p class="metric-value">@Model.Fired1Month</p>
+        </div></div>
     </div>
 
     <div class="row">
-        <div class="col-md-4 col-xl-3">
-            <div class="card bg-c-pink order-card">
-                <div class="card-block">
-                    <h6 class="m-b-20">Fired Employees Last Month</h6>
-                    <h2 class="text-right">
-                        <i class="fa fa-cart-plus f-left"></i><span>
-                            @Model.Fired1Month
-                        </span>
-                    </h2>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4 col-xl-3">
-            <div class="card bg-c-pink order-card">
-                <div class="card-block">
-                    <h6 class="m-b-20">Fired Employees in Last 3 Month</h6>
-                    <h2 class="text-right">
-                        <i class="fa fa-cart-plus f-left"></i><span>
-                            @Model.Fired3Month
-                        </span>
-                    </h2>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4 col-xl-3">
-            <div class="card bg-c-pink order-card">
-                <div class="card-block">
-                    <h6 class="m-b-20">Fired Employees in Last 6 Month </h6>
-                    <h2 class="text-right">
-                        <i class="fa fa-cart-plus f-left"></i><span>
-                            @Model.Fired6Month
-                        </span>
-                    </h2>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4 col-xl-3">
-            <div class="card bg-c-pink order-card">
-                <div class="card-block">
-                    <h6 class="m-b-20">Fired Employees Last Year</h6>
-                    <h2 class="text-right">
-                        <i class="fa fa-cart-plus f-left"></i><span>
-                            @Model.Fired1Year
-                        </span>
-                    </h2>
-
-                </div>
-            </div>
-        </div>
+        <div class="col-12 col-xl-8 mb-4"><div class="card dashboard-card p-4">
+            <div class="section-title">Employee Activity</div><small class="text-muted">Hiring and departures over time</small>
+            <div class="chart-container mt-3"><canvas id="lineChart"></canvas></div>
+        </div></div>
+        <div class="col-12 col-xl-4 mb-4"><div class="card dashboard-card p-4">
+            <div class="section-title">Workforce Overview</div><small class="text-muted d-block mb-3">Current employee status</small>
+            <div class="d-flex justify-content-between py-3 border-bottom"><span>Active employees</span><strong>@Model.ActiveEmployees</strong></div>
+            <div class="d-flex justify-content-between py-3 border-bottom"><span>Deactivated employees</span><strong>@Model.Deactivated</strong></div>
+            <div class="d-flex justify-content-between py-3 border-bottom"><span>Hired this year</span><strong>@Model.Hired1Year</strong></div>
+            <div class="d-flex justify-content-between py-3"><span>Fired this year</span><strong>@Model.Fired1Year</strong></div>
+        </div></div>
     </div>
-   <div class="row mt-5">
-    <div class="col-md-12">
-        <h3>Employee List</h3>
+
+    <div class="card dashboard-card p-4">
+        <div class="section-title">Employee Directory</div><small class="text-muted d-block mb-3">Current employee and contract status</small>
         <div class="table-responsive">
-            <table class="table table-hover shadow-sm">
-                <thead class="thead-light">
-                    <tr>
-                        <th scope="col">Employee Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Contract Start Date</th>
-                        <th scope="col">Contract End Date</th>
-                        <th scope="col">Termination Reason</th>
-                        <th scope="col">Status</th>
-                    </tr>
-                </thead>
+            <table class="table table-hover dashboard-table">
+                <thead><tr><th>Employee</th><th>Email</th><th>Contract Start</th><th>Contract End</th><th>Termination Reason</th><th>Status</th></tr></thead>
                 <tbody>
-                    @foreach (var employee in Model._employeeManager.GetAllEmployees())
-                    {
-                        <tr>
-                            <td>@employee.GetFullName()</td>
-                            <td>@employee.Email</td>
-                            <td>@employee.Contract.startDate.ToString("yyyy-MM-dd")</td>
-                            <td>@(employee.Contract.endDate.HasValue ? employee.Contract.endDate.Value.ToString("yyyy-MM-dd") : "N/A")</td>
-                            <td>@(string.IsNullOrEmpty(employee.Contract.terminationReason) ? "N/A" : employee.Contract.terminationReason)</td>
-                            <td>
-                                <span class="badge @(employee.Contract.isActive ? "badge-success" : "badge-secondary") text-black">
-                                    @(employee.Contract.isActive ? "Active" : "Deactivated")
-                                </span>
-                            </td>
-                        </tr>
-                    }
+                @foreach (var employee in Model._employeeManager.GetAllEmployees())
+                {
+                    <tr>
+                        <td class="font-weight-bold">@employee.GetFullName()</td><td>@employee.Email</td>
+                        <td>@employee.Contract.startDate.ToString("yyyy-MM-dd")</td>
+                        <td>@(employee.Contract.endDate.HasValue ? employee.Contract.endDate.Value.ToString("yyyy-MM-dd") : "N/A")</td>
+                        <td>@(string.IsNullOrEmpty(employee.Contract.terminationReason) ? "N/A" : employee.Contract.terminationReason)</td>
+                        <td><span class="badge @(employee.Contract.isActive ? "badge-success" : "badge-secondary") status-badge">@(employee.Contract.isActive ? "Active" : "Deactivated")</span></td>
+                    </tr>
+                }
                 </tbody>
             </table>
         </div>
     </div>
 </div>
-</div>
 
 @section Scripts {
-      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-       
-        var hiredData = [
-            @Model.Hired1Month,
-            @Model.Hired3Month,
-            @Model.Hired6Month,
-            @Model.Hired1Year
-        ];
-
-        var firedData = [
-            @Model.Fired1Month,
-            @Model.Fired3Month,
-            @Model.Fired6Month,
-            @Model.Fired1Year
-        ];
-
-        var labels = ["1 Month", "3 Months", "6 Months", "1 Year"];
-
-       
-        var ctx = document.getElementById('lineChart').getContext('2d');
-        var lineChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'New Employees',
-                    data: hiredData,
-                    borderColor: 'green',
-                    backgroundColor: 'transparent',
-                    borderWidth: 4
-                }, {
-                    label: 'Fired Employees',
-                    data: firedData,
-                    borderColor: 'red',
-                    backgroundColor: 'transparent',
-                    borderWidth: 4
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false, 
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
-            }
-        });
-    </script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const ctx=document.getElementById('lineChart');
+new Chart(ctx,{type:'line',data:{labels:['1 Month','3 Months','6 Months','1 Year'],datasets:[
+{label:'Hired',data:[@Model.Hired1Month,@Model.Hired3Month,@Model.Hired6Month,@Model.Hired1Year],borderWidth:3,tension:.35,fill:false},
+{label:'Fired',data:[@Model.Fired1Month,@Model.Fired3Month,@Model.Fired6Month,@Model.Fired1Year],borderWidth:3,tension:.35,fill:false}
+]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}},scales:{y:{beginAtZero:true,ticks:{precision:0}}}}});
+</script>
 }
