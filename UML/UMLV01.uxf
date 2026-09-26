@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>13</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1274</x>
+      <y>221</y>
+      <w>273</w>
+      <h>260</h>
+    </coordinates>
+    <panel_attributes>
+User
+
+--
+- id: int
+- name: string
+- email: string
+- password: string
+- address: string
+- BSN: int
+
+--
++ GetUsername(): string</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2223</x>
+      <y>611</y>
+      <w>520</w>
+      <h>273</h>
+    </coordinates>
+    <panel_attributes>
+Admin
+
+--
+- id: int
+- name: string
+- department: Department
+- username: string
+- password: string
+
+--
++ GetName(): string
++ GetDepartment(): Department
++ GetUsername(): string
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>546</x>
+      <y>585</y>
+      <w>351</w>
+      <h>351</h>
+    </coordinates>
+    <panel_attributes>
+Employee
+
+--
+- id: int
+- name: string
+- department: Department
+- username: string
+- password: string
+- worksheets: List&lt;Worksheet&gt;
+- hoursOfWork: List&lt;WorkHours&gt;
+
+--
++ GetName(): string
++ GetDepartment(): Department
++ GetUsername(): string
++ GetWorksheets(): List&lt;Worksheet&gt;
++ GetHoursOfWork(): List&lt;WorkHours&gt;
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>572</x>
+      <y>1092</y>
+      <w>273</w>
+      <h>143</h>
+    </coordinates>
+    <panel_attributes>Support
+
+--
+
+--
++ HandleCustomerInquiries(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>286</x>
+      <y>1092</y>
+      <w>273</w>
+      <h>143</h>
+    </coordinates>
+    <panel_attributes>Sales Representative
+
+--
+
+--
++ SellProducts(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>676</x>
+      <y>468</y>
+      <w>754</w>
+      <h>143</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;90.0;560.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1430</x>
+      <y>468</y>
+      <w>1105</w>
+      <h>169</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>830.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>858</x>
+      <y>1092</y>
+      <w>273</w>
+      <h>143</h>
+    </coordinates>
+    <panel_attributes>Cashier
+
+--
+
+--
++ ProcessTransactions(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>702</x>
+      <y>923</y>
+      <w>39</w>
+      <h>195</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>780</x>
+      <y>1001</y>
+      <w>247</w>
+      <h>117</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>170.0;70.0;170.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>429</x>
+      <y>1001</y>
+      <w>390</w>
+      <h>117</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>280.0;20.0;10.0;20.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>637</x>
+      <y>221</y>
+      <w>442</w>
+      <h>247</h>
+    </coordinates>
+    <panel_attributes>
+User Managment
+
+--
+- users: Dictionary&lt;string, User&gt;
+
+--
++ AddUser(user: User): void
++ RemoveUser(username: string): void
++ GetUser(username: string): User
++ Authenticate(username: string, password: string): bool
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1066</x>
+      <y>338</y>
+      <w>234</w>
+      <h>39</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>160.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1118</x>
+      <y>663</y>
+      <w>338</w>
+      <h>273</h>
+    </coordinates>
+    <panel_attributes>Worksheet
+
+--
+- id: int
+- description: string
+- employee: Employee
+- status: string
+
+--
++ GetDescription(): string
++ GetEmployee(): Employee
++ GetStatus(): string</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>1092</y>
+      <w>273</w>
+      <h>143</h>
+    </coordinates>
+    <panel_attributes>Security Guard
+
+--
+
+--
++ MonitorPremises(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>117</x>
+      <y>1001</y>
+      <w>351</w>
+      <h>117</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>250.0;20.0;10.0;20.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1144</x>
+      <y>1092</y>
+      <w>273</w>
+      <h>143</h>
+    </coordinates>
+    <panel_attributes>Depot Worker
+
+--
+
+--
++ ManageInventory(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>988</x>
+      <y>1001</y>
+      <w>325</w>
+      <h>117</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>230.0;70.0;230.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1586</x>
+      <y>637</y>
+      <w>546</w>
+      <h>260</h>
+    </coordinates>
+    <panel_attributes>Employee Management System
+
+--
+- employees: List&lt;Employee&gt;
+
+--
+
++ AssignWork(employee: Employee, worksheet: 
++ AddEmployee(employee: Employee): void
++ RemoveEmployee(employee: Employee): void
++ SearchEmployees(criteria: string): List&lt;Employee&gt;
++ SortEmployees(criteria: string): List&lt;Employee&gt;
++ SetWorkingHours(employee: Employee, hours: List&lt;WorkHours&gt;): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2119</x>
+      <y>754</y>
+      <w>130</w>
+      <h>39</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;80.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>884</x>
+      <y>767</y>
+      <w>260</w>
+      <h>39</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>180.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1573</x>
+      <y>988</y>
+      <w>520</w>
+      <h>234</h>
+    </coordinates>
+    <panel_attributes>Worksheet Management System
+
+--
+- worksheets: List&lt;Worksheet&gt;
+
+--
+
++ AddWorksheet(worksheet: Worksheet): void 
++ RemoveWorksheet(worksheet: Worksheet): void
++ SearchWorksheet(criteria: string): List&lt;Worksheet&gt;
++ SortWorksheets(criteria: string): List&lt;Worksheet&gt;
++ EditWorksheet(worksheet: Worksheet): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1443</x>
+      <y>923</y>
+      <w>156</w>
+      <h>195</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;100.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2223</x>
+      <y>1014</y>
+      <w>546</w>
+      <h>156</h>
+    </coordinates>
+    <panel_attributes>DB Helper
+-
+connectionString: string
+-
++ DBHelper()
+- createConnection(): MySqlConnection
++ GetAllEmployees(): Employees[]
++ GetAllWorksheets(): Worksheets[]
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1066</x>
+      <y>286</y>
+      <w>234</w>
+      <h>39</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;160.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2080</x>
+      <y>1092</y>
+      <w>169</w>
+      <h>39</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2119</x>
+      <y>884</y>
+      <w>390</w>
+      <h>156</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;280.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2080</x>
+      <y>871</y>
+      <w>442</w>
+      <h>143</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;90.0;320.0;10.0</additional_attributes>
+  </element>
+</diagram>
