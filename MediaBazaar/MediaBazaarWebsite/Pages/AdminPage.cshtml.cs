@@ -1,3 +1,4 @@
+using MediaBazaar.Classes;
 using BusinessLogicLayer;
 using BusinessLogicLayer.Interfaces;
 using Microsoft.AspNetCore.Mvc;
